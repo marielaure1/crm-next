@@ -13,7 +13,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@shadcn/ui/avatar"
+} from "@ui/shadcn/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,13 +22,13 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@shadcn/ui/dropdown-menu"
+} from "@ui/shadcn/ui/dropdown-menu"
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@shadcn/ui/sidebar"
+} from "@ui/shadcn/ui/sidebar"
 
 export function NavUser({
   user,

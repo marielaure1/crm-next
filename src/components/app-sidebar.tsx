@@ -4,7 +4,7 @@ import * as React from "react"
 import { ArchiveX, Command, File, Inbox, Minus, Plus, Send, Trash2 } from "lucide-react"
 
 import { NavUser } from "@ui/nav-user"
-import { Label } from "@shadcn/ui/label"
+import { Label } from "@ui/shadcn/ui/label"
 import {
   Sidebar,
   SidebarContent,
@@ -20,9 +20,9 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from "@shadcn/ui/sidebar"
-import { Switch } from "@shadcn/ui/switch"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shadcn/ui/collapsible"
+} from "@ui/shadcn/ui/sidebar"
+import { Switch } from "@ui/shadcn/ui/switch"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@ui/shadcn/ui/collapsible"
 import Link from "next/link"
 
 // This is sample data
