@@ -1,4 +1,4 @@
-import { AppSidebar } from "@ui/app-sidebar"
+import { AppSidebar } from "@ui/layout/sidebar/app-sidebar"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,7 +14,7 @@ import {
   SidebarTrigger,
 } from "@ui/shadcn/ui/sidebar"
 
-export default function Page() {
+export const Layout = ({ children } : { children: React.ReactNode }) => {
   return (
     <SidebarProvider
       style={
@@ -42,12 +42,7 @@ export default function Page() {
           </Breadcrumb>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="aspect-video h-12 w-full bg-muted/50"
-            />
-          ))}
+          {children}
         </div>
       </SidebarInset>
     </SidebarProvider>
