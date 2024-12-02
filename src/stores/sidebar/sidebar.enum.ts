@@ -6,7 +6,7 @@ export enum SidebarStateEnum{
     SETTINGS = "settings",
 }
 
-export enum ExpendSidebarStateEnum{
+export enum ExpendSidebarStateMode{
     CLOSE = "CLOSE",
     OPEN = "OPEN",
 }

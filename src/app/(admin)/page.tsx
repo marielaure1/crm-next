@@ -30,7 +30,7 @@ interface Box {
 
 const Home: React.FC = () => {
   const [active, setActive] = useState<Box | null>(null);
-  const [rows, setRows] = useState(3); // Nombre de lignes
+  const [rows, setRows] = useState(3);
   const [boxs, setBoxs] = useState<Box[]>([
     { id: "1", content: "Box 1", row: 1, position: 1, chart: <ChartRadial/> },
     { id: "2", content: "Box 2", row: 1, position: 2, chart: <ChartDonuts/> },

@@ -24,6 +24,15 @@ import {
 import { Switch } from "@ui/shadcn/ui/switch"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@ui/shadcn/ui/collapsible"
 import Link from "next/link"
+import { ButtonIcon } from "@ui/common/buttons/button-icon";
+import { ButtonThemeMode } from "@ui/modules/interface/button-theme-mode";
+import { useEffect } from "react";
+import { Graph, Home2, ProfileAdd, Profile2User, Setting2 } from "iconsax-react";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
+import { setSidebarActive, open, close } from "@stores/sidebar/sidebar.slice";
+import { ExpendSidebarStateMode, SidebarStateEnum } from "@stores/sidebar/sidebar.enum";
+import { RootState, useAppDispatch } from "@stores/store";
 
 // This is sample data
 const data = {
@@ -146,143 +155,140 @@ const data = {
         "To celebrate our recent project success, I'd like to organize a team dinner.\nAre you available next Friday evening? Please let me know your preferences.",
     },
   ],
-  sideNav: [
-    {
-      title: "Getting Started",
-      url: "#",
-      items: [
-        {
-          title: "Installation",
-          url: "#",
-        },
-        {
-          title: "Project Structure",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Building Your Application",
-      url: "#",
-      items: [
-        {
-          title: "Routing",
-          url: "#",
-        },
-        {
-          title: "Data Fetching",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Rendering",
-          url: "#",
-        },
-        {
-          title: "Caching",
-          url: "#",
-        },
-        {
-          title: "Styling",
-          url: "#",
-        },
-        {
-          title: "Optimizing",
-          url: "#",
-        },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "API Reference",
-      url: "#",
-      items: [
-        {
-          title: "Components",
-          url: "#",
-        },
-        {
-          title: "File Conventions",
-          url: "#",
-        },
-        {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Architecture",
-      url: "#",
-      items: [
-        {
-          title: "Accessibility",
-          url: "#",
-        },
-        {
-          title: "Fast Refresh",
-          url: "#",
-        },
-        {
-          title: "Next.js Compiler",
-          url: "#",
-        },
-        {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Community",
-      url: "#",
-      items: [
-        {
-          title: "Contribution Guide",
-          url: "#",
-        },
-      ],
-    },
-  ],
+  sideNav: {
+    leads: [
+      {
+        title: "Clients",
+        url: "/leads/clients",
+        items: [
+          {
+            title: "Client 1",
+            url: "/leads/clients/1",
+          },
+          {
+            title: "Client 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Prospects",
+        url: "/leads/prospects",
+        items: [
+          {
+            title: "Prospect 1",
+            url: "#",
+          },
+          {
+            title: "Prospect 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Contacts",
+        url: "/leads/contacts",
+        items: [
+          {
+            title: "Contact 1",
+            url: "#",
+          },
+          {
+            title: "Contact 2",
+            url: "#",
+          },
+        ],
+      },
+    ],
+    reports: [
+      {
+        title: "Clients",
+        url: "#",
+        items: [
+          {
+            title: "Client 1",
+            url: "#",
+          },
+          {
+            title: "Client 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Prospects",
+        url: "#",
+        items: [
+          {
+            title: "Prospect 1",
+            url: "#",
+          },
+          {
+            title: "Prospect 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Contacts",
+        url: "#",
+        items: [
+          {
+            title: "Contact 1",
+            url: "#",
+          },
+          {
+            title: "Contact 2",
+            url: "#",
+          },
+        ],
+      },
+    ],
+    employees: [
+      {
+        title: "Employees",
+        url: "#",
+        items: [
+          {
+            title: "Client 1",
+            url: "#",
+          },
+          {
+            title: "Client 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Prospects",
+        url: "#",
+        items: [
+          {
+            title: "Prospect 1",
+            url: "#",
+          },
+          {
+            title: "Prospect 2",
+            url: "#",
+          },
+        ],
+      },
+      {
+        title: "Contacts",
+        url: "#",
+        items: [
+          {
+            title: "Contact 1",
+            url: "#",
+          },
+          {
+            title: "Contact 2",
+            url: "#",
+          },
+        ],
+      },
+    ]
+  }
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -290,12 +296,117 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   // IRL you should use the url/router.
   const [activeItem, setActiveItem] = React.useState(data.navMain[0])
   const [mails, setMails] = React.useState(data.mails)
-  const { setOpen } = useSidebar()
+  const { setOpen, state } = useSidebar()
+  const pathname = usePathname();
+  const dispatch = useAppDispatch();
+  const sidebarState = useSelector((state: RootState) => state.sidebar);
+
+  useEffect(() => {
+    handleSidebarPahtname();
+  }, [pathname, dispatch])
+
+  useEffect(() => {
+    localStorage.setItem("sidebar", JSON.stringify(sidebarState));
+  }, [sidebarState]);
+
+  useEffect(() => {
+    const expendSidebarMode = sidebarState.expendSidebarMode;
+    if(expendSidebarMode == ExpendSidebarStateMode.OPEN){
+      console.log("OPEN");
+      setOpen(true)
+      dispatch(open())
+    } else {
+      console.log("CLOSE");
+      setOpen(false)
+      dispatch(close())
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(state);
+    
+    if(state == "expanded"){
+      console.log("OPEN");
+      
+      dispatch(open())
+    } else {
+      console.log("CLOSE");
+      
+      dispatch(close())
+    }
+
+    
+  }, [state])
+
+  const handleSidebarPahtname = () => {
+    if (pathname) {
+      const pathnameSplit = pathname.split("/");
+      if(pathname == "/"){
+        dispatch(setSidebarActive(SidebarStateEnum.HOME));
+      } else if (pathnameSplit[1] && Object.values(SidebarStateEnum).includes(pathnameSplit[1] as SidebarStateEnum)) {
+        dispatch(setSidebarActive(pathnameSplit[1] as SidebarStateEnum));
+      } else {
+        dispatch(setSidebarActive(null));
+      }
+    }
+  }
+  
+  
+  const items = [
+    {
+      title: "Home",
+      url: "/",
+      icon: Home2,
+      sidebarIndex: SidebarStateEnum.HOME,
+      extendSidebarIndex: null
+    },
+    {
+      title: "Leads",
+      icon: ProfileAdd,
+      sidebarIndex: SidebarStateEnum.LEADS,
+      extendSidebarIndex: SidebarStateEnum.LEADS,
+    },
+    {
+      title: "Report",
+      icon: Graph,
+      sidebarIndex: SidebarStateEnum.REPORTS,
+      extendSidebarIndex: SidebarStateEnum.REPORTS,
+    },
+    {
+      title: "Employee",
+      icon: Profile2User,
+      sidebarIndex: SidebarStateEnum.EMPLOYEES,
+      extendSidebarIndex: SidebarStateEnum.EMPLOYEES,
+    },
+  ];
+
+  const setExtendSidebarActive = (index : SidebarStateEnum | null) => {
+    if (index && Object.values(SidebarStateEnum).includes(index)) {
+      dispatch(setSidebarActive(index));
+    } else {
+      dispatch(setSidebarActive(null));
+    }
+  }
+
+  const getIsSidebarActive = (sidebarActive: string | null, sidebarIndex: string): string => {
+    return sidebarActive === sidebarIndex || sidebarActive === null ? true : false;
+  };
+
+  const handleExtendSidebar = (item) => {
+    if(sidebarState.sidebarActive == item.sidebarIndex && state == "expanded"){
+      handleSidebarPahtname();
+      setOpen(false)
+    } else {
+      dispatch(setSidebarActive(item.sidebarIndex))
+      setOpen(true)
+    }
+  }
+
 
   return (
     <Sidebar
       collapsible="icon"
-      className="overflow-hidden [&>[data-sidebar=sidebar]]:flex-row"
+      className="overflow-hidden [&>[data-sidebar=sidebar]]:flex-row "
       {...props}
     >
       {/* This is the first sidebar */}
@@ -303,7 +414,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       {/* This will make the sidebar appear as icons. */}
       <Sidebar
         collapsible="none"
-        className="!w-full px-[10px]"
+        className="px-[10px] py-[20px]"
       >
         <SidebarHeader>
           <SidebarMenu>
@@ -323,10 +434,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           </SidebarMenu>
         </SidebarHeader>
         <SidebarContent>
-          <SidebarGroup>
+          <SidebarGroup className="pt-[100px]">
             <SidebarGroupContent className="px-1.5 md:px-0">
               <SidebarMenu>
-                {data.navMain.map((item) => (
+                {/* {data.navMain.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       tooltip={{
@@ -350,69 +461,90 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <item.icon />
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+                ))} */}
+                 <div className="flex flex-col gap-[15px] h-[70%]">
+                 {items?.map((item) => {
+                    const isExtendSidebarActive = item.extendSidebarIndex;
+                    const handleClick = isExtendSidebarActive ? () => handleExtendSidebar(item) : undefined;
+                    const linkHref = isExtendSidebarActive == null ? item.url : undefined;
+
+                    return (
+                        <ButtonIcon
+                        onClick={handleClick}
+                        isLink={!isExtendSidebarActive}
+                        key={item.title}
+                        href={linkHref}
+                        Icon={item.icon}
+                        iconSize="20"
+                        iconColor={getIsSidebarActive(sidebarState?.sidebarActive, item.sidebarIndex) ? "#FFFFFF" : "#101820"}
+                        className={getIsSidebarActive(sidebarState?.sidebarActive, item.sidebarIndex) ? "bg-gray-1100" : "bg-blue-100"}
+                        />
+                    );
+                })}
+
+                </div>
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
         <SidebarFooter>
-          <NavUser user={data.user} />
+         
+          <div className="flex flex-col gap-[10px]">
+            <ButtonThemeMode />
+            <ButtonIcon isLink={false} href={""} Icon={Setting2} iconSize="20" iconColor={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "#FFFFFF" : "#101820"} className={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "bg-gray-1100" : "bg-blue-100"} />
+        
+            <NavUser user={data.user} />
+          </div>
         </SidebarFooter>
       </Sidebar>
 
       {/* This is the second sidebar */}
       {/* We disable collapsible and let it fill remaining space */}
-      <Sidebar collapsible="none" className="hidden flex-1 md:flex">
-        <SidebarHeader className="gap-3.5 border-b p-4">
-          <div className="flex w-full items-center justify-between">
-            <div className="text-base font-medium text-foreground">
-              {activeItem.title}
-            </div>
-            <Label className="flex items-center gap-2 text-sm">
-              <span>Unreads</span>
-              <Switch className="shadow-none" />
-            </Label>
-          </div>
-          <SidebarInput placeholder="Type to search..." />
-        </SidebarHeader>
+      <Sidebar collapsible="none" className="hidden flex-1 md:flex py-[20px] border-l">
+        
         <SidebarContent>
-        <SidebarGroup>
-          <SidebarMenu>
-            {data.sideNav.map((item, index) => (
-              <Collapsible
-                key={item.title}
-                defaultOpen={index === 1}
-                className="group/collapsible"
-              >
-                <SidebarMenuItem>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuButton>
-                      {item.title}{" "}
-                      <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
-                      <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
-                    </SidebarMenuButton>
-                  </CollapsibleTrigger>
-                  {item.items?.length ? (
-                    <CollapsibleContent>
-                      <SidebarMenuSub>
-                        {item.items.map((item) => (
-                          <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={item.isActive}
-                            >
-                              <a href={item.url}>{item.title}</a>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </SidebarMenuSub>
-                    </CollapsibleContent>
-                  ) : null}
-                </SidebarMenuItem>
-              </Collapsible>
-            ))}
-          </SidebarMenu>
-        </SidebarGroup>
+          <SidebarGroup className="px-[20px] pb-[20px] pt-[140px]">
+            <SidebarMenu>
+              {sidebarState?.sidebarActive && data?.sideNav[sidebarState?.sidebarActive]?.map((item, index) => (
+                <Collapsible
+                  key={item.title}
+                  defaultOpen={index === 1}
+                  className="group/collapsible "
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton>
+                        {item.url ? (
+                          <Link href={item.url} className="">{item.title}</Link>
+                        ) : (
+                          <span className="">{item.title}</span>
+                        )}
+                        
+                        <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
+                        <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    {item.items?.length ? (
+                      <CollapsibleContent>
+                        <SidebarMenuSub>
+                          {item.items.map((item) => (
+                            <SidebarMenuSubItem key={item.title}>
+                              <SidebarMenuSubButton
+                                asChild
+                                isActive={item.isActive}
+                              >
+                                <Link href={item.url}>{item.title}</Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </SidebarMenuSub>
+                      </CollapsibleContent>
+                    ) : null}
+                  </SidebarMenuItem>
+                </Collapsible>
+              ))}
+            </SidebarMenu>
+          </SidebarGroup>
         </SidebarContent>
       </Sidebar>
     </Sidebar>

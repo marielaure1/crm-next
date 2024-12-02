@@ -1,14 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { SidebarStateEnum, ExpendSidebarStateEnum } from "@stores/sidebar/sidebar.enum";
+import { SidebarStateEnum, ExpendSidebarStateMode } from "@stores/sidebar/sidebar.enum";
 
 export interface SidebarState {
   sidebarActive: SidebarStateEnum | null;
-  expendSidebarActive: ExpendSidebarStateEnum;
+  expendSidebarMode: ExpendSidebarStateMode;
 }
 
 const initialState: SidebarState = {
   sidebarActive: null,
-  expendSidebarActive: ExpendSidebarStateEnum.CLOSE
+  expendSidebarMode: ExpendSidebarStateMode.CLOSE
 };
 
 const sidebarSlice = createSlice({
@@ -18,10 +18,10 @@ const sidebarSlice = createSlice({
     open: (
       state,
     ) => {
-      state.expendSidebarActive = ExpendSidebarStateEnum.OPEN;
+      state.expendSidebarMode = ExpendSidebarStateMode.OPEN;
     },
     close: (state) => {
-      state.expendSidebarActive = ExpendSidebarStateEnum.CLOSE;
+      state.expendSidebarMode = ExpendSidebarStateMode.CLOSE;
     },
     setSidebarActive: (
       state, 
