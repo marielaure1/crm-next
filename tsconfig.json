@@ -21,7 +21,7 @@
       "@app/*": ["./src/app/*"],
       "@img/*": ["./src/assets/img/*"],
       "@ui/*": ["./src/components/*"],
-      "@hooks/*": ["src/shadcn/hooks/*"],
+      "@hooks/*": ["./src/shadcn/hooks/*"],
       "@styles/*": ["./src/styles/*"],
       "@shadcn/*": ["./src/shadcn/*"],
       "@api/*": ["./src/api/*"],

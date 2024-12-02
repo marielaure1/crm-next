@@ -3,8 +3,8 @@
 import * as React from "react"
 import { ArchiveX, Command, File, Inbox, Minus, Plus, Send, Trash2 } from "lucide-react"
 
-import { NavUser } from "@/components/nav-user"
-import { Label } from "@/components/ui/label"
+import { NavUser } from "@ui/nav-user"
+import { Label } from "@shadcn/ui/label"
 import {
   Sidebar,
   SidebarContent,
@@ -20,9 +20,9 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   useSidebar,
-} from "@/components/ui/sidebar"
-import { Switch } from "@/components/ui/switch"
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
+} from "@shadcn/ui/sidebar"
+import { Switch } from "@shadcn/ui/switch"
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@shadcn/ui/collapsible"
 import Link from "next/link"
 
 // This is sample data
