@@ -1,4 +1,4 @@
-import { ReactQuery } from "@api/configs/react-query";
+import { ReactQuery } from "@api/configs/react-query-module";
 
 export class ApiModule<DataInterface, CustomMethods = {}> extends ReactQuery<DataInterface> {
   constructor(

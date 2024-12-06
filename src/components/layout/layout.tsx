@@ -12,7 +12,7 @@ export const Layout = ({ children } : { children: React.ReactNode }) => {
     <SidebarProvider
       style={
         {
-          "--sidebar-width": "350px",
+          "--sidebar-width": "280px",
         } as React.CSSProperties
       }
     >

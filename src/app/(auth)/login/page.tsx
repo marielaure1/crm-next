@@ -46,8 +46,6 @@ export default function Login() {
   const login = async (data) => {
     try {
       const response = await api.auth.login(data);
-      console.log(response);
-
       if (response?.success) {
         const data = response.data;
 

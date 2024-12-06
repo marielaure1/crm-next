@@ -1,0 +1,18 @@
+html{
+    // THEME BTN
+    --amber-light: #{$amber-100};
+    --sky-light: #{$sky-100};
+    --gray-light: #{$gray-100};
+
+    // GLOBAL
+    --btn-theme-amber: #{$amber-100};
+    --btn-theme-sky: #{$sky-100};
+    --btn-theme-gray: #{$gray-100};
+}
+
+html[data-theme-mode="dark"]{
+    // THEME BTN
+    --amber-light: #{$amber-800};
+    --sky-light: #{$sky-800};
+    --gray-light: #{$gray-800};
+}

@@ -1,4 +1,4 @@
-import { UserInfosProps } from "@interfaces/users/user-infos.interface";
+import { UserInfosProps } from "@api/interfaces/users/user-infos.interface";
 import { createSlice } from "@reduxjs/toolkit";
 
 export interface AuthState {

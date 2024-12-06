@@ -1,0 +1,7 @@
+.menu-item{
+    @apply bg-sidebar-menu-item hover:bg-sidebar-menu-item-active;
+
+    &-active{
+        @apply bg-sidebar-menu-item-active;
+    }
+}

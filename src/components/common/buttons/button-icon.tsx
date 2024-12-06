@@ -4,8 +4,8 @@ import Link from "next/link";
 interface ButtonIconContentProps{
     Icon : Icon;
     SecondaryIcon?: Icon;
-    iconSize: number | string;
-    iconColor: string;
+    iconSize?: number | string;
+    iconColor?: string;
     iconClassName?: string;
     secondaryIconClassName?: string;
 }
@@ -19,7 +19,7 @@ interface ButtonIconProps extends ButtonIconContentProps{
 }
 
 export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconColor, className, onClick, iconClassName, secondaryIconClassName, ...props } : ButtonIconProps) => {
-    const btnContainer = `w-[40px] h-[40px] rounded-[20px] overflow-hidden bg-blue-100 ${className}`;
+    const btnContainer = `w-btn-icon h-btn-icon rounded-[20px] overflow-hidden flex ${className}`;
 
     return(
         <>
@@ -37,24 +37,25 @@ export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconCo
 }
 
 const ButtonIconContent = ({ Icon, SecondaryIcon, iconSize, iconColor, iconClassName, secondaryIconClassName } : ButtonIconContentProps) => {
-    const iconContainer = `w-[40px] h-[40px] flex justify-center items-center`;
+    const iconContainer = `w-btn-icon h-btn-icon flex justify-center items-center`;
+    const size = iconSize || "16";
+    const color = iconColor || "#101820";
 
     return(
         <div className="w-fit h-full flex transition-transform hover:-translate-x-1/2">
             <span className={`${iconContainer} ${iconClassName}`}>
-                <Icon size={iconSize} color={iconColor}/>
+                <Icon size={size} color={color}/>
             </span>
 
             {SecondaryIcon ? (
                 <span className={`${iconContainer} ${secondaryIconClassName}`}>
-                    <SecondaryIcon size={iconSize} color={iconColor}/>
+                    <SecondaryIcon size={size} color={color}/>
                 </span>
             ) : (
                 <span className={`${iconContainer} ${iconClassName}`}>
-                    <Icon size={iconSize} color={iconColor}/>
+                    <Icon size={size} color={color}/>
                 </span>
             )}
-            
         </div>
     )
 }

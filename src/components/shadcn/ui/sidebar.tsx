@@ -21,9 +21,9 @@ import {
 
 const SIDEBAR_COOKIE_NAME = "sidebar:state"
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7
-const SIDEBAR_WIDTH = "350px"
+const SIDEBAR_WIDTH = "250px"
 const SIDEBAR_WIDTH_MOBILE = "18rem"
-const SIDEBAR_WIDTH_ICON = "100px"
+const SIDEBAR_WIDTH_ICON = "84px"
 const SIDEBAR_KEYBOARD_SHORTCUT = "b"
 
 type SidebarContext = {
@@ -181,7 +181,7 @@ const Sidebar = React.forwardRef<
       return (
         <div
           className={cn(
-            "flex h-full w-[60px] flex-col bg-sidebar text-sidebar-foreground",
+            "flex h-full w-[52px] flex-col bg-sidebar text-sidebar-foreground",
             className
           )}
           ref={ref}
@@ -234,7 +234,7 @@ const Sidebar = React.forwardRef<
         />
         <div
           className={cn(
-            "duration-200 fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] ease-linear md:flex p-[20px]",
+            "duration-200 fixed inset-y-0 z-10 hidden h-svh w-[--sidebar-width] transition-[left,right,width] ease-linear md:flex p-[15px]",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -515,7 +515,7 @@ const SidebarMenuItem = React.forwardRef<
 SidebarMenuItem.displayName = "SidebarMenuItem"
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-[20px] text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-red-600 data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:!w-[40px] group-data-[collapsible=icon]:!h-[25px]  group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-[20px] text-left text-sm outline-none ring-sidebar-ring transition-[width,height,padding] disabled:pointer-events-none disabled:opacity-50 group-has-[[data-sidebar=menu-action]]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-red-600 data-[active=true]:font-medium data-[active=true]:text-sidebar-accent-foreground group-data-[collapsible=icon]:!w-btn-icon group-data-[collapsible=icon]:!h-btn-icon  group-data-[collapsible=icon]:!p-2 [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -524,9 +524,9 @@ const sidebarMenuButtonVariants = cva(
           "bg-background ",
       },
       size: {
-        default: "h-[25px] text-sm",
-        sm: "h-[25px] text-xs",
-        lg: "h-[25px] text-sm group-data-[collapsible=icon]:!p-0",
+        default: "h-btn-icon text-sm",
+        sm: "h-btn-icon text-xs",
+        lg: "h-btn-icon text-sm group-data-[collapsible=icon]:!p-0",
       },
     },
     defaultVariants: {

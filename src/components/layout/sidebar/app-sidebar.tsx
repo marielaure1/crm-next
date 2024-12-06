@@ -3,7 +3,7 @@
 import * as React from "react"
 import { ArchiveX, Command, File, Inbox, Minus, Plus, Send, Trash2 } from "lucide-react"
 
-import { NavUser } from "@ui/layout/sidebar/nav-user";
+import { NavUser } from "@ui/modules/interface/nav-user/nav-user";
 import { Label } from "@ui/shadcn/ui/label"
 import {
   Sidebar,
@@ -25,7 +25,7 @@ import { Switch } from "@ui/shadcn/ui/switch"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@ui/shadcn/ui/collapsible"
 import Link from "next/link"
 import { ButtonIcon } from "@ui/common/buttons/button-icon";
-import { ButtonThemeMode } from "@ui/modules/interface/button-theme-mode";
+import { ButtonThemeMode } from "@ui/modules/interface/theme/mode/button-theme-mode";
 import { useEffect } from "react";
 import { Graph, Home2, ProfileAdd, Profile2User, Setting2 } from "iconsax-react";
 import { usePathname } from "next/navigation";
@@ -33,13 +33,15 @@ import { useSelector } from "react-redux";
 import { setSidebarActive, open, close } from "@stores/sidebar/sidebar.slice";
 import { ExpendSidebarStateMode, SidebarStateEnum } from "@stores/sidebar/sidebar.enum";
 import { RootState, useAppDispatch } from "@stores/store";
+import { ButtonLanguage } from "@ui/modules/interface/theme/language/button-language";
+import { ButtonThemeColor } from "@ui/modules/interface/theme/color/button-theme-color";
 
 // This is sample data
 const data = {
   user: {
     name: "shadcn",
     email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "",
   },
   navMain: [
     {
@@ -292,8 +294,6 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  // Note: I'm using state to show active item.
-  // IRL you should use the url/router.
   const [activeItem, setActiveItem] = React.useState(data.navMain[0])
   const [mails, setMails] = React.useState(data.mails)
   const { setOpen, state } = useSidebar()
@@ -305,33 +305,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     handleSidebarPahtname();
   }, [pathname, dispatch])
 
-  useEffect(() => {
-    localStorage.setItem("sidebar", JSON.stringify(sidebarState));
-  }, [sidebarState]);
+  // useEffect(() => {
+  //   localStorage.setItem("sidebar", JSON.stringify(sidebarState));
+  // }, [sidebarState]);
 
   useEffect(() => {
     const expendSidebarMode = sidebarState.expendSidebarMode;
     if(expendSidebarMode == ExpendSidebarStateMode.OPEN){
-      console.log("OPEN");
       setOpen(true)
       dispatch(open())
     } else {
-      console.log("CLOSE");
       setOpen(false)
       dispatch(close())
     }
   }, [])
 
   useEffect(() => {
-    console.log(state);
     
     if(state == "expanded"){
-      console.log("OPEN");
-      
       dispatch(open())
     } else {
-      console.log("CLOSE");
-      
       dispatch(close())
     }
 
@@ -420,8 +413,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenu>
             <SidebarMenuItem>
               <SidebarMenuButton size="lg" asChild>
-                <Link href="#" className="!rounded-[0px]">
-                  <div className="flex aspect-square w-[40px] h-[40px] rounded-[20px] items-center justify-center bg-sidebar-primary text-sidebar-primary-foreground">
+                <Link href="#" >
+                  <div className="flex aspect-square w-btn-icon h-btn-icon rounded-[20px] items-center justify-center bg-sidebar-primary text-sidebar-primary-foreground">
                     <Command className="size-4" />
                   </div>
                   <div className="grid flex-1 text-left text-sm leading-tight">
@@ -456,7 +449,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         setOpen(true)
                       }}
                       isActive={activeItem.title === item.title}
-                      className="w-[40px] h-[40px] flex items-center justify-center rounded-[20px]"
+                      className="w-btn-icon h-btn-icon flex items-center justify-center rounded-[20px]"
                     >
                       <item.icon />
                     </SidebarMenuButton>
@@ -475,9 +468,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                         key={item.title}
                         href={linkHref}
                         Icon={item.icon}
-                        iconSize="20"
                         iconColor={getIsSidebarActive(sidebarState?.sidebarActive, item.sidebarIndex) ? "#FFFFFF" : "#101820"}
-                        className={getIsSidebarActive(sidebarState?.sidebarActive, item.sidebarIndex) ? "bg-gray-1100" : "bg-blue-100"}
+                        className={getIsSidebarActive(sidebarState?.sidebarActive, item.sidebarIndex) ? "menu-item-active" : "menu-item"}
                         />
                     );
                 })}
@@ -490,9 +482,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarFooter>
          
           <div className="flex flex-col gap-[10px]">
+            <ButtonThemeColor />
             <ButtonThemeMode />
-            <ButtonIcon isLink={false} href={""} Icon={Setting2} iconSize="20" iconColor={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "#FFFFFF" : "#101820"} className={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "bg-gray-1100" : "bg-blue-100"} />
-        
+            <ButtonIcon isLink={false} href={""} Icon={Setting2} iconColor={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "#FFFFFF" : "#101820"} className={sidebarState?.sidebarActive == SidebarStateEnum.SETTINGS ? "menu-item-active" : "menu-item"} />
+                <ButtonLanguage/>
             <NavUser user={data.user} />
           </div>
         </SidebarFooter>
@@ -500,7 +493,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
       {/* This is the second sidebar */}
       {/* We disable collapsible and let it fill remaining space */}
-      <Sidebar collapsible="none" className="hidden flex-1 md:flex py-[20px] border-l">
+      <Sidebar collapsible="none" className="hidden flex-1 md:flex py-[20px] border-l ml-[2px]">
         
         <SidebarContent>
           <SidebarGroup className="px-[20px] pb-[20px] pt-[140px]">

@@ -1,3 +1,10 @@
+@import "./variables/light.variables";
+@import "./variables/dark.variables";
+@import "./themes/colors.theme";
+@import "./themes/blue.theme";
+@import "./themes/red.theme";
+@import "./buttons";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +18,7 @@ body {
     text-wrap: balance;
   }
 }
-
+/* 
 @layer base {
   :root {
     --background: #F5FAFF;
@@ -91,4 +98,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
+} */

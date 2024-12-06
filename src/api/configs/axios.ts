@@ -36,10 +36,12 @@ export class Axios<DataInterface> {
 
   async findAllAxios() {
     try {
+      console.log(`Fetching data from ${this.path}`);
       const response = await this.apiClient.get(`/${this.path}`);
-      
       return response?.data;
     } catch (error) {
+      console.log(error);
+      
       return error?.response?.data;
     }
   }

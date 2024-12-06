@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-// import "@styles/reset.css";
-import "@styles/globals.css";
-// import "@styles/theme.scss";
+import "@styles/globals.scss";
 import { Layout } from "@ui/layout/layout";
 import { ClientProviders } from "@ui/utilities/client-providers";
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="bg-blue-100"> 
+    <html lang="en" data-theme-color="blue">
+      <body className="bg-background"> 
         <ClientProviders>
           <Layout>
             {children}

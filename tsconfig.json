@@ -27,9 +27,11 @@
       "@api/*": ["./src/api/*"],
       "@stores/*": ["./src/stores/*"],
       "@interfaces/*": ["./src/interfaces/*"],
-      "@enums/*": ["./src/enums/*"]
+      "@dtos/*": ["./src/dtos/*"],
+      "@enums/*": ["./src/enums/*"],
+      "@utils/*": ["./src/utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "next-i18next.config.mjs"],
   "exclude": ["node_modules"]
 }
