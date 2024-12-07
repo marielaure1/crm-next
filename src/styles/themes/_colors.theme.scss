@@ -3,11 +3,38 @@ html{
     --amber-light: #{$amber-100};
     --sky-light: #{$sky-100};
     --gray-light: #{$gray-100};
+    
+    --background: #{$slate};
 
     // GLOBAL
-    --btn-theme-amber: #{$amber-100};
-    --btn-theme-sky: #{$sky-100};
-    --btn-theme-gray: #{$gray-100};
+
+    // BUTTON
+    --btn-background-amber: #{$amber-100};
+    --btn-background-sky: #{$sky-100};
+    --btn-background-gray: #{$gray-100};
+
+    --btn-foreground-amber: #{$amber-900};
+    --btn-foreground-sky: #{$sky-800};
+    --btn-foreground-gray: #{$gray-800};
+
+    // BUTTON THEME
+    --btn-theme-background-light: #{$amber-100};
+    --btn-theme-background-dark: #{$indigo-900};
+    --btn-theme-background-system: #{$gray-100};
+
+    --btn-theme-foreground-light: #{$amber-900};
+    --btn-theme-foreground-dark: #{$white};
+    --btn-theme-foreground-dark-desactived: #{$indigo-900};
+    --btn-theme-foreground-system: #{$gray-1000};
+    
+    // TEXT
+    --foreground: #{$d-slate-100};
+
+    // COLORS
+    --white: #{$white};
+    --blue: #{$blue-800};
+    --red: #{$red-800};
+
 }
 
 html[data-theme-mode="dark"]{
@@ -15,4 +42,7 @@ html[data-theme-mode="dark"]{
     --amber-light: #{$amber-800};
     --sky-light: #{$sky-800};
     --gray-light: #{$gray-800};
+
+     // TEXT
+     --foreground: #{$white-a-50};
 }

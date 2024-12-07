@@ -1,10 +1,13 @@
+import { PageBreadcrumb } from "@ui/common/breadcrumb/page-breadcrumb"
+import { Separator } from "@ui/shadcn/ui/separator"
+import { SidebarTrigger } from "@ui/shadcn/ui/sidebar"
 
 export const Topbar = () => {
     return (
-        <div className="w-full fixed left-0 top-0 pt-[20px] z-10 bg-green-600">
-            <div className="w-full h-btn-icon pl-[100px]">
-
-            </div>
-        </div>
+        <header className="fixed top-0 flex shrink-0 items-center gap-2 w-full p-4 pl-0">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <PageBreadcrumb/>
+        </header>
     )
 }

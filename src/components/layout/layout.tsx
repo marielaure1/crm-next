@@ -1,11 +1,9 @@
-import { PageBreadcrumb } from "@ui/common/breadcrumb/page-breadcrumb"
-import { AppSidebar } from "@ui/layout/sidebar/app-sidebar"
-import { Separator } from "@ui/shadcn/ui/separator"
+import { AppSidebar } from "@ui/layout/sidebar/app-sidebar";
 import {
   SidebarInset,
   SidebarProvider,
-  SidebarTrigger,
-} from "@ui/shadcn/ui/sidebar"
+} from "@ui/shadcn/ui/sidebar";
+import { Topbar } from "@ui/layout/topbar/topbar";
 
 export const Layout = ({ children } : { children: React.ReactNode }) => {
   return (
@@ -19,11 +17,7 @@ export const Layout = ({ children } : { children: React.ReactNode }) => {
       
       <AppSidebar />
       <SidebarInset>
-        <header className="sticky top-0 flex shrink-0 items-center gap-2 bg-background p-4 pl-0">
-          <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
-          <PageBreadcrumb/>
-        </header>
+        <Topbar/>
         <div className="flex flex-1 flex-col gap-4 p-4 pl-0">
           {children}
         </div>

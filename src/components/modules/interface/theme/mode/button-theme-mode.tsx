@@ -1,7 +1,7 @@
 "use client"
 
 import { cn } from "@shadcn/lib/utils";
-import { useButtonThemeMode } from "./button-theme-mode.hook";
+import { useButtonThemeMode } from "@ui/modules/interface/theme/mode/theme-mode.hook";
 
 export const ButtonThemeMode = () => {
     const {
@@ -17,7 +17,7 @@ export const ButtonThemeMode = () => {
                 currentMode == ThemeModeEnum.LIGHT ? "translate-x-0 hover:-translate-x-1/2" : "-translate-x-1/2 hover:translate-x-0",
                 "w-fit h-full flex transition-transform"
             )}>
-                {modes.map((mode, index) => (
+                {modes.filter((mode) => mode.value !== ThemeModeEnum.SYSTEM).map((mode, index) => (
                     <span
                     key={index} 
                     className={cn(
@@ -26,11 +26,12 @@ export const ButtonThemeMode = () => {
                     )} 
                     onClick={() => changeThemeMode(mode.value)}
                     >
-                        <mode.icon size="16" color={mode.color}/>
+                        <mode.icon size="16" color={mode.colorIconActive || mode.colorIcon}/>
                     </span>
                 ))}
             </div>
         </div>
+
+       
     )
 }
-

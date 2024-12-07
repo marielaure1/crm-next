@@ -16,9 +16,10 @@ interface ButtonIconProps extends ButtonIconContentProps{
     href?: string;
     className?: string;
     onClick?: () => void;
+    props?: any;
 }
 
-export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconColor, className, onClick, iconClassName, secondaryIconClassName, ...props } : ButtonIconProps) => {
+export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconColor, className, onClick, iconClassName, secondaryIconClassName, props } : ButtonIconProps) => {
     const btnContainer = `w-btn-icon h-btn-icon rounded-[20px] overflow-hidden flex ${className}`;
 
     return(

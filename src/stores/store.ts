@@ -5,7 +5,6 @@ import { authMiddleware } from "@stores/auth/auth.middleware";
 import { sidebarReducer } from "@stores/sidebar/sidebar.slice";
 import { sidebarMiddleware } from "@stores/sidebar/sidebar.middleware";
 import { themeReducer } from "@stores/theme/theme.slice";
-import { themeMiddleware } from "@stores/theme/theme.middleware";
 
 export const store = configureStore({
   reducer: {
@@ -14,7 +13,7 @@ export const store = configureStore({
     theme: themeReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authMiddleware, sidebarMiddleware, themeMiddleware),
+    getDefaultMiddleware().concat(authMiddleware, sidebarMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

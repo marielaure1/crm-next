@@ -11,6 +11,7 @@ import {
 } from "@ui/shadcn/ui/breadcrumb";
 
 const breadcrumbMap: Record<string, { title?: string; href?: string }> = {
+  home: { title: "Home", href: "/"},
   leads: { title: "Leads" },
 };
 
@@ -32,7 +33,7 @@ export const PageBreadcrumb = () => {
               .charAt(0)
               .toUpperCase() + segment.slice(1);
 
-          let href = config?.href !== undefined ? config.href : undefined;
+          let href = config?.href !== undefined || config?.href == "/" ? config.href : undefined;
           href = !isLast && (href || !config) ? `/${segments.slice(0, index + 1).join("/")}` : undefined;
 
           return (

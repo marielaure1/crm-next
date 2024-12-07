@@ -3,9 +3,7 @@ import type { Config } from "tailwindcss";
 const config: Config = {
     darkMode: ["class"],
     content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
   	extend: {
@@ -30,9 +28,17 @@ const config: Config = {
 				"gray-light": "var(--gray-light)",
 			},
 			"btn-theme": {
-				"amber": "var(--btn-theme-amber)",
-				"sky": "var(--btn-theme-sky)",
-				"gray": "var(--btn-theme-gray)",
+				background: {
+					"light": "var(--btn-theme-background-light)",
+					"dark": "var(--btn-theme-background-dark)",
+					"system": "var(--btn-theme-background-system)",
+				},
+				foreground: {
+					"light": "var(--btn-theme-foreground-light)",
+					"dark": "var(--btn-theme-foreground-dark)",
+					"dark-desactived": "var(--btn-theme-foreground-dark-desactived)",
+					"system": "var(--btn-theme-foreground-system)",
+				}
 			},
   			foreground: 'hsl(var(--foreground))',
   			card: {
@@ -55,6 +61,9 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
   			},
+			white: "var(--white)",
+			blue: "var(--blue)",
+			red: "var(--red)",
   			muted: {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
