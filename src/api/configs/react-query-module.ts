@@ -20,10 +20,10 @@ export class ReactQuery<DataInterface> {
 
   async findAll() {
     try {
-      console.log(this.type);
       const response = await this.apiAxios.findAllAxios();
-      this.queryClient.setQueryData([this.type], response);
-      return response;
+      const datas = response?.data[this.type.queryKey];
+      this.queryClient.setQueryData([this.type.queryKey], datas);
+      return datas;
     } catch (error) {
       return error?.response;
     }
@@ -32,9 +32,7 @@ export class ReactQuery<DataInterface> {
   async create(datas: DataInterface) {
     try {
       const response = await this.apiAxios.createAxios(datas);
-      this.queryClient.invalidateQueries({ queryKey: [this.type] });
-      console.log(response);
-      
+      this.queryClient.invalidateQueries({ queryKey: [this.type.queryKey] });
       return response;
     } catch (error) {
       return error?.response;
@@ -44,8 +42,8 @@ export class ReactQuery<DataInterface> {
   async findOne(id: string) {
     try {
       const response = await this.apiAxios.findOneAxios(id);
-      this.queryClient.setQueryData([this.type, id], response);
-      return response;
+      this.queryClient.setQueryData([this.type.queryKey, id], response);
+      return response?.data[this.type.queryKey];
     } catch (error) {
       return error?.response;
     }
@@ -54,7 +52,7 @@ export class ReactQuery<DataInterface> {
   async update(id: string, datas: DataInterface) {
     try {
       const response = await this.apiAxios.updateAxios(id, datas);
-      this.queryClient.invalidateQueries({ queryKey: [this.type] });
+      this.queryClient.invalidateQueries({ queryKey: [this.type.queryKey] });
       return response;
     } catch (error) {
       return error?.response;
@@ -64,7 +62,7 @@ export class ReactQuery<DataInterface> {
   async delete(id: string) {
     try {
       const response = await this.apiAxios.deleteAxios(id);
-      this.queryClient.invalidateQueries({ queryKey: [this.type] });
+      this.queryClient.invalidateQueries({ queryKey: [this.type.queryKey] });
       return response;
     } catch (error) {
       return error?.response;

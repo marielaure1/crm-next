@@ -18,7 +18,7 @@ export const Layout = ({ children } : { children: React.ReactNode }) => {
       <AppSidebar />
       <SidebarInset>
         <Topbar/>
-        <div className="flex flex-1 flex-col gap-4 p-4 pl-0">
+        <div className="flex flex-1 flex-col gap-4 p-[15px] pl-0 pt-[60px]">
           {children}
         </div>
       </SidebarInset>

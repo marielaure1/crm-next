@@ -42,21 +42,18 @@ const config: Config = {
 			},
   			foreground: 'hsl(var(--foreground))',
   			card: {
-  				DEFAULT: 'hsl(var(--card))',
-  				foreground: 'hsl(var(--card-foreground))'
+  				DEFAULT: 'var(--card)',
+  				foreground: 'var(--card-foreground)'
   			},
   			popover: {
   				DEFAULT: 'hsl(var(--popover))',
   				foreground: 'hsl(var(--popover-foreground))'
   			},
   			primary: {
-  				DEFAULT: 'hsl(var(--primary))',
-  				foreground: 'hsl(var(--primary-foreground))'
+  				DEFAULT: 'var(--primary)',
+  				foreground: 'var(--primary-foreground)',
+				background: 'var(--primary-background)'
   			},
-			"primary-light": {
-				DEFAULT: 'hsl(var(--primary-light))',
-				foreground: 'hsl(var(--primary-foreground))'
-			},
   			secondary: {
   				DEFAULT: 'hsl(var(--secondary))',
   				foreground: 'hsl(var(--secondary-foreground))'
@@ -76,6 +73,10 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--destructive))',
   				foreground: 'hsl(var(--destructive-foreground))'
   			},
+			subtile: {
+				DEFAULT: 'var(--subtile)',
+  				foreground: 'var(--subtile-foreground)'
+			},
 			"yellow-light": "var(--amber-light)",
 			"blue-light": "var(--sky-light)",
 			"gray-light": "var(--gray-light)",

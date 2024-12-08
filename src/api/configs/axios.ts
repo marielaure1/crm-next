@@ -1,3 +1,4 @@
+import { ResponseApi } from '@api/interfaces/api.interfaces';
 import axios, { AxiosInstance } from 'axios';
 
 export class Axios<DataInterface> {
@@ -38,6 +39,8 @@ export class Axios<DataInterface> {
     try {
       console.log(`Fetching data from ${this.path}`);
       const response = await this.apiClient.get(`/${this.path}`);
+      console.log(response?.data);
+      
       return response?.data;
     } catch (error) {
       console.log(error);

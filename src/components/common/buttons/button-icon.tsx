@@ -1,9 +1,10 @@
-import { Icon } from "iconsax-react";
+import { Icon as IconSaxReact } from "iconsax-react";
+import { Icon as IconLucide, LucideIcon } from "lucide-react";
 import Link from "next/link";
 
 interface ButtonIconContentProps{
-    Icon : Icon;
-    SecondaryIcon?: Icon;
+    Icon : IconSaxReact | LucideIcon;
+    SecondaryIcon?: IconSaxReact | LucideIcon;
     iconSize?: number | string;
     iconColor?: string;
     iconClassName?: string;
@@ -20,7 +21,7 @@ interface ButtonIconProps extends ButtonIconContentProps{
 }
 
 export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconColor, className, onClick, iconClassName, secondaryIconClassName, props } : ButtonIconProps) => {
-    const btnContainer = `w-btn-icon h-btn-icon rounded-[20px] overflow-hidden flex ${className}`;
+    const btnContainer = `cursor-pointer w-btn-icon h-btn-icon rounded-[20px] overflow-hidden flex ${className}`;
 
     return(
         <>
@@ -37,7 +38,7 @@ export const ButtonIcon = ({ isLink, Icon, SecondaryIcon, href, iconSize, iconCo
     )
 }
 
-const ButtonIconContent = ({ Icon, SecondaryIcon, iconSize, iconColor, iconClassName, secondaryIconClassName } : ButtonIconContentProps) => {
+export const ButtonIconContent = ({ Icon, SecondaryIcon, iconSize, iconColor, iconClassName, secondaryIconClassName } : ButtonIconContentProps) => {
     const iconContainer = `w-btn-icon h-btn-icon flex justify-center items-center`;
     const size = iconSize || "16";
     const color = iconColor || "#101820";

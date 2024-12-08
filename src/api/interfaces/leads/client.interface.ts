@@ -1,6 +1,8 @@
 import { LeadProps } from "@api/interfaces/leads/lead.interface";
 
-export interface ClientProps extends LeadProps{
+export interface ClientProps {
+	_id?: string;
+	lead: LeadProps;
     contractStartDate?: Date;
 	contractEndDate?: Date;
 	lastPurchaseDate?: Date;

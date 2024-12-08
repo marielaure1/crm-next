@@ -1,4 +1,9 @@
 html{
+    // GLOBAL
+    --background: #{$gray};
+    --subtile: #{$d-slate-1000};
+    --subtile-foreground: #{$white};
+
     // THEME BTN
     --amber-light: #{$amber-100};
     --sky-light: #{$sky-100};
@@ -6,7 +11,7 @@ html{
     
     --background: #{$slate};
 
-    // GLOBAL
+    
 
     // BUTTON
     --btn-background-amber: #{$amber-100};
@@ -35,9 +40,19 @@ html{
     --blue: #{$blue-800};
     --red: #{$red-800};
 
+    // CARD
+    --card: #{$white};
+    --card-foreground: #{$d-slate-1000};
+    
+
 }
 
 html[data-theme-mode="dark"]{
+    // GLOBAL
+    --background: #{$d-slate-100};
+    --subtile: #{$white};
+    --subtile-foreground: #{$d-slate-1000};
+
     // THEME BTN
     --amber-light: #{$amber-800};
     --sky-light: #{$sky-800};

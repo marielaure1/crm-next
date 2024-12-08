@@ -1,3 +1,14 @@
 body{
     overflow-x: hidden;
+    font-family: "Poppins", sans-serif;
+}
+
+/** Title */
+.title-page{
+    @extend .poppins-medium;
+    @apply text-lg;
+}
+
+.border-b-dashed{
+    @apply border-b border-dashed border-slate-700;
 }
